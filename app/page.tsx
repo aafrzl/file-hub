@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { SignInButton, currentUser } from '@clerk/nextjs';
 import Image from 'next/image';
 import Link from 'next/link';
+import heroImage from '@/public/Images/hero-images.png';
 
 export default async function Home() {
   const user = await currentUser();
@@ -18,7 +19,7 @@ export default async function Home() {
         <h2 className="mx-auto text-4xl font-extrabold md:text-5xl">
           The best way to share files and upload them to the cloud.
         </h2>
-        <p className="mx-auto max-w-2xl">
+        <p className=" mx-auto max-w-2xl">
           Storing files on your computer can be a pain. FileHub makes it easy to
           upload files to the cloud and share them with your friends.
         </p>
@@ -47,7 +48,7 @@ export default async function Home() {
       </div>
       <div className="mt-14">
         <Image
-          src="/images/hero-images.png"
+          src={heroImage}
           width={500}
           height={500}
           priority

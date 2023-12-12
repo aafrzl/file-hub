@@ -11,6 +11,7 @@ import { collection, orderBy, query } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import DeleteModal from '../modals/DeleteModal';
 import RenameModal from '../modals/RenameModal';
+import { Skeleton } from '../ui/skeleton';
 
 interface TablesWrapperProps {
   skeletonFiles: FileType[];
@@ -48,8 +49,34 @@ export default function TablesWrapper({ skeletonFiles }: TablesWrapperProps) {
 
   if (docs?.docs.length === undefined) {
     return (
-      <div className="flex h-96 items-center justify-center">
-        <h2 className="text-2xl">Loading...</h2>
+      <div className="flex flex-col">
+        <Button
+          variant={'outline'}
+          className="mb-5 ml-auto h-10 w-36">
+          <Skeleton className="h-full w-full" />
+        </Button>
+
+        <div className="rounded-lg border">
+          <div className="h-fit border-b">
+            {skeletonFiles.map((file) => (
+              <div
+                key={file.id}
+                className="flex w-full items-center space-x-4 p-5">
+                <Skeleton className="h-12 w-12" />
+                <Skeleton className="h-12 w-full" />
+              </div>
+            ))}
+          </div>
+        </div>
+        {skeletonFiles.length === 0 &&
+          [...Array(10)].map((_, i) => (
+            <div
+              key={i}
+              className="flex w-full items-center space-x-4 p-5">
+              <Skeleton className="h-12 w-12" />
+              <Skeleton className="h-12 w-full" />
+            </div>
+          ))}
       </div>
     );
   }
