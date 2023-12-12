@@ -2,7 +2,6 @@ import { Button } from '@/components/ui/button';
 import { SignInButton, currentUser } from '@clerk/nextjs';
 import Image from 'next/image';
 import Link from 'next/link';
-import heroImage from '@/public/Images/hero-images.png';
 
 export default async function Home() {
   const user = await currentUser();
@@ -48,7 +47,7 @@ export default async function Home() {
       </div>
       <div className="mt-14">
         <Image
-          src={heroImage}
+          src={'/hero-image.png'}
           width={500}
           height={500}
           priority
